@@ -1,0 +1,19 @@
+﻿@model IEnumerable<SelfCheckoutSim.Models.Item>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<section>
+    <h2>Recent Items</h2>
+
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>
+                @item.Name Added On @item.DateCreated
+            </li>
+        }
+    </ul>
+</section>
+
