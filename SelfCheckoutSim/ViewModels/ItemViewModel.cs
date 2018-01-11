@@ -18,7 +18,6 @@ namespace SelfCheckoutSim.ViewModels
         [Display(Name = "Food Stamps Eligibile")]
         public bool Fs { get; set; }
 
-        [Required]
         [Display(Name = "Weight")]
         public int Wt { get; set; }
 

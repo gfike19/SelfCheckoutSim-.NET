@@ -26,7 +26,7 @@ namespace SelfCheckoutSim.Controllers
             return View(items);
         }
 
-        public IActionResult AddItem (ItemViewModel itemViewModel)
+        public IActionResult AddItem(ItemViewModel itemViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -41,10 +41,14 @@ namespace SelfCheckoutSim.Controllers
                     LbOrUnit = itemViewModel.LbOrUnit,
                     PLU = Helper.getPlu(itemViewModel.PLU, itemViewModel.Name)
                 };
-                context.Cheeses.Add(newCheese);
+                context.Items.Add(newItem);
                 context.SaveChanges();
 
-                return Redirect("/Cheese");
+                return Redirect("/SelfChecoutSim");
             }
+            return View(itemViewModel);
+        }
+
+
     }
 }

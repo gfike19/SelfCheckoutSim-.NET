@@ -10,7 +10,7 @@ namespace SelfCheckoutSim.Data
         public static string getPlu (string plu, string name)
         {
             string tempPlu = "";
-            if (plu == 0)
+            if (plu.Equals("") || plu == "")
             {
                 int i = 0;
                 while (tempPlu.Length < 11)
