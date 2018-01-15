@@ -8,7 +8,7 @@ namespace SelfCheckoutSim.Models
 {
     public class Item
     {
-        public int ItemId { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
         public int Price { get; set; }
         public int Wt { get; set; }

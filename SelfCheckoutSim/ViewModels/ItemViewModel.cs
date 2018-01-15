@@ -27,6 +27,8 @@ namespace SelfCheckoutSim.ViewModels
 
         public string PLU { get; set; }
 
+        public string SaveChangesError { get; set; }
+
         public ItemViewModel() { }
     }
 }

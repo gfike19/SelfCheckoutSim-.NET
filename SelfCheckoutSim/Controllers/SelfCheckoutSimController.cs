@@ -26,6 +26,7 @@ namespace SelfCheckoutSim.Controllers
             return View(items);
         }
 
+        
         public IActionResult AddItem(ItemViewModel itemViewModel)
         {
             if (ModelState.IsValid)
