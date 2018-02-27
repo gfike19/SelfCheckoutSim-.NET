@@ -20,6 +20,10 @@ namespace SelfCheckoutSim.Data
                     i++;
                 }
             }
+            else
+            {
+                tempPlu = plu;
+            }
 
             return tempPlu;
         }

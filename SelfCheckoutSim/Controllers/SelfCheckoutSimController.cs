@@ -45,7 +45,7 @@ namespace SelfCheckoutSim.Controllers
                 context.Items.Add(newItem);
                 context.SaveChanges();
 
-                return Redirect("/SelfChecoutSim");
+                return Redirect("Index");
             }
             return View(itemViewModel);
         }
