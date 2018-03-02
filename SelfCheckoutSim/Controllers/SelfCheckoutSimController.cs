@@ -29,6 +29,7 @@ namespace SelfCheckoutSim.Controllers
         
         public IActionResult AddItem(ItemViewModel itemViewModel)
         {
+            //TODO combine add item and remove item page into one?
             if (ModelState.IsValid)
             {
 
@@ -62,11 +63,15 @@ namespace SelfCheckoutSim.Controllers
             Item item = context.Items.Single(i => i.ID == items);
             context.Items.Remove(item);
             //TODO add message saying item has been removed
-            
 
             context.SaveChanges();
 
             return Redirect("/");
         }
+
+        //public IActionResult NewOrder()
+        //{
+
+        //}
     }
 }

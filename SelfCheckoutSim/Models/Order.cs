@@ -7,7 +7,7 @@ namespace SelfCheckoutSim.Models
 {
     public class Order
     {
-        public int OrderId { get; set; }
+        public int ID { get; set; }
         public List<Item> Items { get; set; }
         public int SubTotal { get; set; }
         public int Total { get; set; }
@@ -16,7 +16,6 @@ namespace SelfCheckoutSim.Models
 
         public Order()
         {
-            { }
         }
     }
 }
