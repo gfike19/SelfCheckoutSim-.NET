@@ -29,7 +29,6 @@ namespace SelfCheckoutSim.Controllers
         
         public IActionResult AddItem(ItemViewModel itemViewModel)
         {
-            //TODO need to fix timestamp issue
             if (ModelState.IsValid)
             {
 

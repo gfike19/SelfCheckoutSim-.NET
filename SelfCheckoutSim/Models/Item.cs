@@ -14,7 +14,7 @@ namespace SelfCheckoutSim.Models
         public int Wt { get; set; }
         public bool Fs { get; set; }
         public string LbOrUnit { get; set; }
-        public DateTime DateCreated { get; set; }
+        public DateTime DateCreated = DateTime.Now;
         public string PLU { get; set; }
 
         public Item()
