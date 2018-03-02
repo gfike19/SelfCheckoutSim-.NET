@@ -14,8 +14,6 @@ namespace SelfCheckoutSim.Models
         public int Wt { get; set; }
         public bool Fs { get; set; }
         public string LbOrUnit { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DateCreated { get; set; }
         public string PLU { get; set; }
 

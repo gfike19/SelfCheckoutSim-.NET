@@ -29,10 +29,10 @@ namespace SelfCheckoutSim.Controllers
         
         public IActionResult AddItem(ItemViewModel itemViewModel)
         {
+            //TODO need to fix timestamp issue
             if (ModelState.IsValid)
             {
 
-                // Add the new cheese to my existing cheeses
                 Item newItem = new Item
                 {
                     Name = itemViewModel.Name,
@@ -50,6 +50,24 @@ namespace SelfCheckoutSim.Controllers
             return View(itemViewModel);
         }
 
+        public IActionResult RemoveItem()
+        {
+            ViewBag.Items = context.Items.ToList();
+            return View();
+        }
 
+        [HttpPost]
+        //to remove an item, name select and that is what sent in the post
+        public IActionResult RemoveItem(int items)
+        {
+            Item item = context.Items.Single(i => i.ID == items);
+            context.Items.Remove(item);
+            //TODO add message saying item has been removed
+            
+
+            context.SaveChanges();
+
+            return Redirect("/");
+        }
     }
 }

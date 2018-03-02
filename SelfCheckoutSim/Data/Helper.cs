@@ -10,7 +10,7 @@ namespace SelfCheckoutSim.Data
         public static string getPlu (string plu, string name)
         {
             string tempPlu = "";
-            if (plu.Equals("") || plu == "")
+            if (plu == null)
             {
                 int i = 0;
                 while (tempPlu.Length < 11)
@@ -22,7 +22,7 @@ namespace SelfCheckoutSim.Data
             }
             else
             {
-                tempPlu = plu;
+                tempPlu += plu;
             }
 
             return tempPlu;

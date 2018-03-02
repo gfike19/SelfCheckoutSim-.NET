@@ -4,15 +4,21 @@
     ViewData["Title"] = "RemoveItem";
 }
 
-<h2>RemoveItem</h2>
-<!--TODO look up how to do select tag with source data-->
+<h2>Remove Item</h2>
 
-<form asp-controller="SelfCheckoutSim" asp-action="RemoveItem" method="post">
-    @{ foreach ()
-    <select>
-        
-    </select> 
-    }
-    
-</form>
+<form method="post">
+    <select name="items" id="items">
+        @foreach (var item in ViewBag.Items)
+    {
+
+
+
+        <option value="@item.ID">@item.Name</option>
+
+}
+    </select>
+
+        <button type="submit">Submit</button>
+    </form>
+
 
