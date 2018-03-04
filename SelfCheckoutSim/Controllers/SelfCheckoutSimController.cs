@@ -7,6 +7,7 @@ using SelfCheckoutSim.Data;
 using SelfCheckoutSim.Models;
 using SelfCheckoutSim.ViewModels;
 
+
 namespace SelfCheckoutSim.Controllers
 {
     public class SelfCheckoutSimController : Controller
@@ -58,9 +59,9 @@ namespace SelfCheckoutSim.Controllers
 
         [HttpPost]
         //to remove an item, name select and that is what sent in the post
-        public IActionResult RemoveItem(int items)
+        public IActionResult RemoveItem(int itemId)
         {
-            Item item = context.Items.Single(i => i.ID == items);
+            Item item = context.Items.Single(i => i.ID == itemId);
             context.Items.Remove(item);
             //TODO add message saying item has been removed
 
@@ -76,8 +77,12 @@ namespace SelfCheckoutSim.Controllers
         }
 
         [HttpPost]
-        public IActionResult NewOrderPost()
+        public IActionResult NewOrder(int itemId)
         {
+            Item item = context.Items.Single(i => i.ID == itemId);
+
+            List<Item> cart;
+
 
         }
     }

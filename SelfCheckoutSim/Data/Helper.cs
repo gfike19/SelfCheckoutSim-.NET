@@ -27,7 +27,5 @@ namespace SelfCheckoutSim.Data
 
             return tempPlu;
         }
-
-
     }
 }
