@@ -10,10 +10,10 @@ namespace SelfCheckoutSim.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Orders",
+                name: "Trans",
                 columns: table => new
                 {
-                    OrderId = table.Column<int>(nullable: false)
+                    ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     FsTotal = table.Column<int>(nullable: false),
                     NfsTotal = table.Column<int>(nullable: false),
@@ -22,37 +22,38 @@ namespace SelfCheckoutSim.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Orders", x => x.OrderId);
+                    table.PrimaryKey("PK_Trans", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Items",
                 columns: table => new
                 {
-                    ItemId = table.Column<int>(nullable: false)
+                    ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Fs = table.Column<bool>(nullable: false),
                     LbOrUnit = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
-                    OrderId = table.Column<int>(nullable: true),
+                    PLU = table.Column<string>(nullable: true),
                     Price = table.Column<int>(nullable: false),
+                    TransID = table.Column<int>(nullable: true),
                     Wt = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Items", x => x.ItemId);
+                    table.PrimaryKey("PK_Items", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Items_Orders_OrderId",
-                        column: x => x.OrderId,
-                        principalTable: "Orders",
-                        principalColumn: "OrderId",
+                        name: "FK_Items_Trans_TransID",
+                        column: x => x.TransID,
+                        principalTable: "Trans",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Items_OrderId",
+                name: "IX_Items_TransID",
                 table: "Items",
-                column: "OrderId");
+                column: "TransID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -61,7 +62,7 @@ namespace SelfCheckoutSim.Migrations
                 name: "Items");
 
             migrationBuilder.DropTable(
-                name: "Orders");
+                name: "Trans");
         }
     }
 }

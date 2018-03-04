@@ -21,7 +21,7 @@ namespace SelfCheckoutSim.Controllers
 
         public IActionResult Index()
         {
-            //takes last 10 things entered into the database
+            //takes last 5 things entered into the database
             IList<Item> items = context.Items.Take(5).ToList();
 
             return View(items);
@@ -72,18 +72,27 @@ namespace SelfCheckoutSim.Controllers
 
         public IActionResult NewOrder()
         {
-            ViewBag.Items = context.Items.ToList();
+            ViewBag.Shelf = context.Items.ToList(); 
+
+            try
+            {
+                ViewBag.Cart = TempData[key: "cart"];
+            } catch (Exception e)
+            {
+                ViewBag.Cart = "";
+            }
+            
             return View();
         }
 
-        [HttpPost]
-        public IActionResult NewOrder(int itemId)
-        {
-            Item item = context.Items.Single(i => i.ID == itemId);
+        //[HttpPost]
+        //public IActionResult NewOrder(int itemId)
+        //{
+        //    Item item = context.Items.Single(i => i.ID == itemId);
 
-            List<Item> cart;
+        //    List<Item> cart;
 
 
-        }
+        //}
     }
 }

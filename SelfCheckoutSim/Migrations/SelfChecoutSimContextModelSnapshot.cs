@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.EntityFrameworkCore.Storage.Internal;
 using SelfCheckoutSim.Models;
 using System;
 
@@ -23,32 +25,30 @@ namespace SelfCheckoutSim.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("DateCreated");
-
                     b.Property<bool>("Fs");
 
                     b.Property<string>("LbOrUnit");
 
                     b.Property<string>("Name");
 
-                    b.Property<int?>("OrderId");
-
                     b.Property<string>("PLU");
 
                     b.Property<int>("Price");
+
+                    b.Property<int?>("TransID");
 
                     b.Property<int>("Wt");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("OrderId");
+                    b.HasIndex("TransID");
 
                     b.ToTable("Items");
                 });
 
-            modelBuilder.Entity("SelfCheckoutSim.Models.Order", b =>
+            modelBuilder.Entity("SelfCheckoutSim.Models.Trans", b =>
                 {
-                    b.Property<int>("OrderId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("FsTotal");
@@ -59,16 +59,16 @@ namespace SelfCheckoutSim.Migrations
 
                     b.Property<int>("Total");
 
-                    b.HasKey("OrderId");
+                    b.HasKey("ID");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Trans");
                 });
 
             modelBuilder.Entity("SelfCheckoutSim.Models.Item", b =>
                 {
-                    b.HasOne("SelfCheckoutSim.Models.Order")
+                    b.HasOne("SelfCheckoutSim.Models.Trans")
                         .WithMany("Items")
-                        .HasForeignKey("OrderId");
+                        .HasForeignKey("TransID");
                 });
 #pragma warning restore 612, 618
         }

@@ -13,6 +13,6 @@ namespace SelfCheckoutSim.Models
         { }
 
         public Microsoft.EntityFrameworkCore.DbSet<Item> Items { get; set; }
-        public Microsoft.EntityFrameworkCore.DbSet<Trans> Orders { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<Trans> Trans { get; set; }
     }
 }

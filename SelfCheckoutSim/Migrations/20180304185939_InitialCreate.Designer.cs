@@ -11,8 +11,8 @@ using System;
 namespace SelfCheckoutSim.Migrations
 {
     [DbContext(typeof(SelfChecoutSimContext))]
-    [Migration("20180111160031_InitialSetup")]
-    partial class InitialSetup
+    [Migration("20180304185939_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,10 +23,8 @@ namespace SelfCheckoutSim.Migrations
 
             modelBuilder.Entity("SelfCheckoutSim.Models.Item", b =>
                 {
-                    b.Property<int>("ItemId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("DateCreated");
 
                     b.Property<bool>("Fs");
 
@@ -34,22 +32,24 @@ namespace SelfCheckoutSim.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int?>("OrderId");
+                    b.Property<string>("PLU");
 
                     b.Property<int>("Price");
 
+                    b.Property<int?>("TransID");
+
                     b.Property<int>("Wt");
 
-                    b.HasKey("ItemId");
+                    b.HasKey("ID");
 
-                    b.HasIndex("OrderId");
+                    b.HasIndex("TransID");
 
                     b.ToTable("Items");
                 });
 
-            modelBuilder.Entity("SelfCheckoutSim.Models.Order", b =>
+            modelBuilder.Entity("SelfCheckoutSim.Models.Trans", b =>
                 {
-                    b.Property<int>("OrderId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("FsTotal");
@@ -60,16 +60,16 @@ namespace SelfCheckoutSim.Migrations
 
                     b.Property<int>("Total");
 
-                    b.HasKey("OrderId");
+                    b.HasKey("ID");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Trans");
                 });
 
             modelBuilder.Entity("SelfCheckoutSim.Models.Item", b =>
                 {
-                    b.HasOne("SelfCheckoutSim.Models.Order")
+                    b.HasOne("SelfCheckoutSim.Models.Trans")
                         .WithMany("Items")
-                        .HasForeignKey("OrderId");
+                        .HasForeignKey("TransID");
                 });
 #pragma warning restore 612, 618
         }
