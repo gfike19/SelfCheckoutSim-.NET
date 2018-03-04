@@ -6,5 +6,32 @@
 <h2>New Order</h2>
 
 <form method="post">
+    <datalist name="items" id="items">
+        @foreach (var item in ViewBag.Items)
+        {
+            <option value="@item.ID">@item.Name</option>
+        }
+    </datalist>
+    <button type="submit">Submit</button>
+</form>
 
+<form method="post">
+    <label>
+        Choose an item from the list to add to the cart or
+        start type the name in:
+    </label> <input list="shelf" name="shelf" />
+             <datalist id="shelf">
+                 @foreach (var item in ViewBag.Items)
+    {
+             <option value="@item.ID">@item.Name</option>
+}
+             </datalist>
+    <input type="submit" name="action" value="Add Item" />
+    <br></br>
+    <label>Current cart</label> <input list="cartSelect" name="cartSelect" />
+    <datalist id="cartSelect">
+        <option th:each="item : ${cart}" th:text="${item.name}" th:value="${item.plu}"></option>
+    </datalist>
+    <input type="submit" name="action" value="Remove Item" />
+    <input type="submit" name="action" value="Checkout" />
 </form>

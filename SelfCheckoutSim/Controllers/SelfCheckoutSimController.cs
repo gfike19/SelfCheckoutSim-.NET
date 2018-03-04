@@ -69,9 +69,16 @@ namespace SelfCheckoutSim.Controllers
             return Redirect("/");
         }
 
-        //public IActionResult NewOrder()
-        //{
+        public IActionResult NewOrder()
+        {
+            ViewBag.Items = context.Items.ToList();
+            return View();
+        }
 
-        //}
+        [HttpPost]
+        public IActionResult NewOrderPost()
+        {
+
+        }
     }
 }

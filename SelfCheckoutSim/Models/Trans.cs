@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SelfCheckoutSim.Models
 {
-    public class Order
+    public class Trans
     {
         public int ID { get; set; }
         public List<Item> Items { get; set; }
@@ -14,7 +14,7 @@ namespace SelfCheckoutSim.Models
         public int FsTotal { get; set; }
         public int NfsTotal { get; set; }
 
-        public Order()
+        public Trans()
         {
         }
     }
