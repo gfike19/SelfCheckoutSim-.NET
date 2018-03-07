@@ -15,7 +15,7 @@
             <option value="@item.ID">@item.Name</option>
         }
     </datalist>
-    <input type="submit" name="action" value="Add Item" />
+    <input type="submit" value="Add Item" formaction="AddItem"/>
     <br>
     @if (ViewBag.Cart != null)
     {
@@ -27,8 +27,8 @@
                 <option value="@item.ID">@item.Name</option>
             }
         </datalist>
-        <input type="submit" name="action" value="Remove Item" />
-        <input type="submit" name="action" value="Checkout" />
+        <input type="submit" value="Remove Item" formaction="RemoveItem"/>
+        <input type="submit" value="Checkout" formaction="Checkout"/>
 
     }
     else {

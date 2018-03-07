@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -77,7 +78,7 @@ namespace SelfCheckoutSim.Controllers
             try
             {
                 ViewBag.Cart = TempData[key: "cart"];
-            } catch (Exception e)
+            } catch (Exception)
             {
                 ViewBag.Cart = "";
             }
@@ -85,14 +86,33 @@ namespace SelfCheckoutSim.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public IActionResult NewOrder(int itemId)
-        //{
-        //    Item item = context.Items.Single(i => i.ID == itemId);
+        [HttpPost]
+        public IActionResult AddItem (int [] itemId)
+        {
+            Item item = null;
+            foreach(int j in itemId)
+            {
+                item = context.Items.Single(i => i.ID == j);
+            }
 
-        //    List<Item> cart;
+            try 
+            {
+                List<Item> cart = TempData[key: "cart"] as List<Item>;
+                cart.Add(item);
+                TempData[key: "cart"] = cart;
+                ViewBag.Cart = cart;
+            } catch (Exception)
+            
+            {
+                List<Item> cart = new List<Item>
+                {
+                    item
+                };
+                TempData[key: "cart"] = cart;
+                ViewBag.Cart = cart;
+            }
+            return Redirect("/SelfCheckoutSim/NewOrder");
 
-
-        //}
+        }
     }
 }
