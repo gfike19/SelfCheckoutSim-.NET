@@ -28,7 +28,7 @@ namespace SelfCheckoutSim.Controllers
             return View(items);
         }
 
-        
+
         public IActionResult AddItem(ItemViewModel itemViewModel)
         {
             //TODO combine add item and remove item page into one?
@@ -73,36 +73,36 @@ namespace SelfCheckoutSim.Controllers
 
         public IActionResult NewOrder()
         {
-            ViewBag.Shelf = context.Items.ToList(); 
+            ViewBag.Shelf = context.Items.ToList();
 
             try
             {
                 ViewBag.Cart = TempData[key: "cart"];
-            } catch (Exception)
+            }
+            catch (Exception)
             {
                 ViewBag.Cart = "";
             }
-            
+
             return View();
         }
 
+        //TODO change additem as it interfers with adding an item to the database
         [HttpPost]
-        public IActionResult AddItem (int [] itemId)
+        public IActionResult AddItem(int shelf)
         {
-            Item item = null;
-            foreach(int j in itemId)
-            {
-                item = context.Items.Single(i => i.ID == j);
-            }
 
-            try 
+            Item item = context.Items.Single(i => i.ID == shelf);
+
+            try
             {
                 List<Item> cart = TempData[key: "cart"] as List<Item>;
                 cart.Add(item);
                 TempData[key: "cart"] = cart;
                 ViewBag.Cart = cart;
-            } catch (Exception)
-            
+            }
+            catch (Exception)
+
             {
                 List<Item> cart = new List<Item>
                 {
@@ -111,7 +111,7 @@ namespace SelfCheckoutSim.Controllers
                 TempData[key: "cart"] = cart;
                 ViewBag.Cart = cart;
             }
-            return Redirect("/SelfCheckoutSim/NewOrder");
+            return View("NewOrder");
 
         }
     }
